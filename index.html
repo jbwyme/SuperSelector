@@ -1,0 +1,51 @@
+<html>
+<head>
+    <style>
+        .notloaded {
+            background: #aaa;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="clickContent">
+        <h1>SuperSelector</h1>
+        <p>
+            <strong>Use SuperSelector as a bookmarklet</strong>
+            <br>
+            Drag this <a id='bookmarklet' class='notloaded'>SuperSelector</a> link to your bookmark bar, now you can use it on any website!            
+        <p>
+        
+        Try Ctrl + Clicking on these elements!
+        </p>
+        <div class="boxes">
+            <div class="red" style="height:100px; width:100px; background:red; float:left; margin:3px;">
+                <button>button</button>
+            </div>
+            <div class="blue" style="height:100px; width:100px; background:blue; float:left; margin:3px">
+                <button>button</button>
+            </div>
+            <div class="yellow" style="height:100px; width:100px; background:yellow; float:left; margin:3px;">
+                <button>button</button>
+            </div>
+        </div>
+    
+        <button class="hasClassAndId" id="hasClassAndId">Button with ID and Class</button>
+    </div>
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var link = document.getElementById('bookmarklet');
+                    link.href = "javascript:"+xhr.responseText;
+                    link.className = 'loaded';
+                }
+            }
+        };
+        xhr.open('get', 'bundle.js', true);
+        xhr.send(null);
+    </script>
+    <script src="bundle.js" type="text/javascript"></script>
+</body>
+</html>
